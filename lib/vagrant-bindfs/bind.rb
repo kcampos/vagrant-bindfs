@@ -54,6 +54,7 @@ module VagrantPlugins
 
           unless binded_folders.empty?
             handle_bindfs_installation
+            handle_bindfs_init
             bind_folders
           end
         end
@@ -112,6 +113,12 @@ module VagrantPlugins
             if !@machine.guest.capability(:bindfs_install)
               raise Vagrant::Bindfs::Error, :cannot_install
             end
+          end
+        end
+
+        def handle_bindfs_init
+          if !@machine.guest.capability(:bindfs_init)
+            raise Vagrant::Bindfs::Error, :cannot_init
           end
         end
         

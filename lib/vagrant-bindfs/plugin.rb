@@ -22,6 +22,16 @@ module VagrantPlugins
         Cap::Linux::BindfsInstalled
       end
 
+      guest_capability("redhat", "bindfs_install") do
+        require 'vagrant-bindfs/cap/redhat/bindfs_install'
+        Cap::RedHat::BindfsInstall
+      end
+
+      guest_capability("redhat", "bindfs_init") do
+        require 'vagrant-bindfs/cap/redhat/bindfs_init'
+        Cap::RedHat::BindfsInit
+      end
+
       require 'vagrant-bindfs/bind'
       %w{up reload}.each do |action|
         action_hook(:bindfs, "machine_action_#{action}".to_sym) do |hook|

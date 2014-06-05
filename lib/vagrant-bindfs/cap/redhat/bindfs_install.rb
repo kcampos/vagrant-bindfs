@@ -8,7 +8,7 @@ module VagrantPlugins
             machine.communicate.tap do |comm|
               if comm.test('uname -r | grep el5')
                 unless comm.test('yum repolist | grep epel')
-                  comm.sudo('wget -o /tmp/epel-release-5-4.noarch.rpm http://dl.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm && rpm -Uvh /tmp/epel-release-5-4.noarch.rpm')
+                  comm.sudo('wget -O /tmp/epel-release-5-4.noarch.rpm http://dl.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm && rpm -Uvh /tmp/epel-release-5-4.noarch.rpm')
                 end
               end
               comm.sudo('yum -y install bindfs')
